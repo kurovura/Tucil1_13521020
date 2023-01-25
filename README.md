@@ -8,6 +8,8 @@ Permainan kartu 24 merupakan permainan mencari angka 24 dengan memasukkan empat 
 
 # Struktur Folder
 - src (berisi source code)
+- bin (file exe dari program main)
+- doc (laporan tugas kecil)
 
 13521020 Varraz Hazzandra Abrar
 
