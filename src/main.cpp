@@ -5,9 +5,10 @@ using namespace std;
 
 int n,i,j,k ;
 int kartu[4];
-string c1,c2,c3,c4 ;
+string c1,c2,c3,c4, op1, op2, op3;
 int totalSolusi = 0;
 string hasilOpr[99999] = {} ;
+char yn,yn2;
 
 int strInt (string str){
     int nilai ;
@@ -111,6 +112,43 @@ double perhitungan (int a, int b, int tanda){
             }
     }
     return hasil;
+}
+
+void posibilitiTo24(){
+    for (i=0; i=3; i++){
+                    for (j=0; j=3; j++){
+                        for (k=0; k=3; k++){
+                            string op1, op2, op3 ;
+                            intTandaStr(i, &op1);  intTandaStr(j, &op2);  intTandaStr(k, &op3);
+                            
+                            // ((ab)c)d
+                            if (kalkulasi1( kartu, i,  j, k)== 24){
+                                totalSolusi ++ ;
+                                hasilOpr[totalSolusi] = "((" + intkartu(kartu[0]) + " " + op1 + " " + intkartu(kartu[1]) + ") " + op2 + " " + intkartu(kartu[2]) + ") " + op3 + " " + intkartu(kartu[3]);
+                            }
+                            // (ab)(cd)
+                            if (kalkulasi2( kartu, i,  j, k)== 24){
+                                totalSolusi ++ ;
+                                hasilOpr[totalSolusi] = "(" + intkartu(kartu[0]) + " " + op1 + " " + intkartu(kartu[1]) + ") " + op2 + " (" + intkartu(kartu[2]) + " " + op3 + " " + intkartu(kartu[3]) + ")";
+                            }
+                            // (a(bc))d
+                            if (kalkulasi3( kartu, i,  j, k)== 24){
+                                totalSolusi ++ ;
+                                hasilOpr[totalSolusi] =   "(" + intkartu(kartu[0]) + " " + op1 + " (" + intkartu(kartu[1]) + " " + op2 + " " + intkartu(kartu[2]) + ")) " + op3 + " " + intkartu(kartu[3]) ;
+                            }
+                            // a((bc)d)
+                            if (kalkulasi4( kartu, i,  j, k)== 24){
+                                totalSolusi ++ ;
+                                hasilOpr[totalSolusi] = intkartu(kartu[0]) + " " + op1 + " ((" + intkartu(kartu[1]) + " " + op2 + " " + intkartu(kartu[2]) + ") " + op3 + " " + intkartu(kartu[3]) + ")" ;
+                            }
+                            // a(b(cd))
+                            if (kalkulasi5( kartu, i,  j, k)== 24){
+                                totalSolusi ++ ;
+                                hasilOpr[totalSolusi] = intkartu(kartu[0]) + " " + op1 + " " + "(" + intkartu(kartu[1]) + " " + op2 + " " + "("+ intkartu(kartu[2]) + " " + op2 + " " + intkartu(kartu[3]) + "))" ;
+                            }
+                        }
+                    }
+    }
 }
    
 // ((ab)c)d
@@ -216,50 +254,14 @@ int main(){
                 }
                 cout << endl;   }   
             
-            
             sort(kartu, kartu+4);
             auto mulai = chrono::steady_clock::now();
             do {
-                int hasil;
-                for (i=0; i=3; i++){
-                    for (j=0; j=3; j++){
-                        for (k=0; k=3; k++){
-                            string op1, op2, op3 ;
-                            intTandaStr(i, &op1);  intTandaStr(j, &op2);  intTandaStr(k, &op3);
-                            
-                            // ((ab)c)d
-                            if (kalkulasi1( kartu, i,  j, k)== 24){
-                                totalSolusi ++ ;
-                                hasilOpr[totalSolusi] = "((" + intkartu(kartu[0]) + " " + op1 + " " + intkartu(kartu[1]) + ") " + op2 + " " + intkartu(kartu[2]) + ") " + op3 + " " + intkartu(kartu[3]);
-                            }
-                            // (ab)(cd)
-                            if (kalkulasi2( kartu, i,  j, k)== 24){
-                                totalSolusi ++ ;
-                                hasilOpr[totalSolusi] = "(" + intkartu(kartu[0]) + " " + op1 + " " + intkartu(kartu[1]) + ") " + op2 + " (" + intkartu(kartu[2]) + " " + op3 + " " + intkartu(kartu[3]) + ")";
-                            }
-                            // (a(bc))d
-                            if (kalkulasi3( kartu, i,  j, k)== 24){
-                                totalSolusi ++ ;
-                                hasilOpr[totalSolusi] =   "(" + intkartu(kartu[0]) + " " + op1 + " (" + intkartu(kartu[1]) + " " + op2 + " " + intkartu(kartu[2]) + ")) " + op3 + " " + intkartu(kartu[3]) ;
-                            }
-                            // a((bc)d)
-                            if (kalkulasi4( kartu, i,  j, k)== 24){
-                                totalSolusi ++ ;
-                                hasilOpr[totalSolusi] = intkartu(kartu[0]) + " " + op1 + " ((" + intkartu(kartu[1]) + " " + op2 + " " + intkartu(kartu[2]) + ") " + op3 + " " + intkartu(kartu[3]) + ")" ;
-                            }
-                            // a(b(cd))
-                            if (kalkulasi5( kartu, i,  j, k)== 24){
-                                totalSolusi ++ ;
-                                hasilOpr[totalSolusi] = intkartu(kartu[0]) + " " + op1 + " " + "(" + intkartu(kartu[1]) + " " + op2 + " " + "("+ intkartu(kartu[2]) + " " + op2 + " " + intkartu(kartu[3]) + "))" ;
-                            }
-                        }
-                    }
-                }
+                posibilitiTo24();
             }while (next_permutation(kartu, kartu+4));
-
-        
             auto selesai = chrono::steady_clock::now();
             auto durasi = chrono::duration_cast<chrono::nanoseconds>(selesai - mulai);
+            
 
             if (totalSolusi == 0){
                 cout<< "Solusi nihil" ;
@@ -267,7 +269,7 @@ int main(){
             else{
                 cout << "Banyak Solusi = "<<" "<< totalSolusi << endl;
                 cout << "Solusi : " <<endl ;
-                for (i = 1 ; i = totalSolusi; i++){
+                for (i = 1 ; i<= totalSolusi; i++){
                     cout << hasilOpr[i]<< endl ;
                 }
                 cout << "Waktu penyelesaian = " <<  durasi.count() << " " << "nanosekon"<<endl ;
@@ -275,12 +277,12 @@ int main(){
             
             cout << "Apakah anda ingin menyimpan hasil pencarian ke dalam file?"<<endl;
             cout << "masukkan y atau n!"<<endl ;
-            char yn;
             cin >> yn;
             while(yn != 'y' && yn != 'n'){
                 cout << "Input tidak valid, masukkan lagi input!"<<endl;
                 cin >> yn;
             }
+            
             if(yn == 'y'){
                 ofstream file;
                 string namafile;
@@ -309,9 +311,9 @@ int main(){
             else{
                 cout << "Hasil pencarian tidak disimpan"<<endl;
             }
+            
             cout << "Apakah anda ingin melanjutkan permainan?"<<endl;
             cout << "y atau n?"<<endl;
-            char yn2;
             cin >> yn2;
             while(yn2 != 'y' && yn2 != 'n'){
                 cout << "Input tidak valid. Input lagi!"<<endl;
@@ -332,7 +334,8 @@ int main(){
         return 0;
     }
 }
-    
+
+
 
         
 
