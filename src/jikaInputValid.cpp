@@ -3,8 +3,6 @@
 #include "operasi24.cpp"
 using namespace std;
 
-
-
 void jikaInputValid(){
             sort(kartu, kartu+4);
             auto mulai = chrono::steady_clock::now();
