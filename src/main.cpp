@@ -1,3 +1,16 @@
+#include "jikaInputValid.cpp"
+using namespace std;
+
+int n;
+string c1,c2,c3,c4;
+
+void menu24(){;
+        cout << "Menu :"<<endl;
+        cout << "1. Input 4 kartu"<<endl;
+        cout << "2. Random dari game"<<endl;
+        cout << "3. Keluar"<<endl;
+}
+
 int main(){
     while(true){
         cout << "24 Game"<<endl;
@@ -41,3 +54,7 @@ int main(){
         return 0;
     }
 }
+
+   
+
+
