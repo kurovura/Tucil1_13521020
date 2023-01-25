@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 
 double perhitungan (int a, int b, int tanda){
     int hasil;
@@ -19,6 +18,36 @@ double perhitungan (int a, int b, int tanda){
             }
     }
     return hasil;
+}
+
+int tandaToInt(string tanda){
+    if (tanda == "+"){
+        return  0 ;
+    }
+    else if (tanda == "-"){
+        return 1  ;
+    }
+    else if (tanda == "*"){
+        return 2  ;
+    }
+    else if (tanda == "/"){
+        return 3  ;
+    }
+}
+
+string intToTanda(int operan){
+    if (operan==0){
+        return "+" ;
+    }
+    else if(operan==1){
+        return "-" ;
+    }
+    else if(operan==2){
+        return "*" ;
+    }
+    else if(operan==3){
+        return "/" ;
+    }
 }
    
 // ((ab)c)d
