@@ -1,5 +1,3 @@
-#include<bits/stdc++.h>
-#include <chrono>
 #include "olahInput.cpp"
 #include "mathTo24.cpp"
 using namespace std;
