@@ -12,7 +12,7 @@ void posibilitiTo24(){
                     for (j=0; j=3; j++){
                         for (k=0; k=3; k++){
                             string op1, op2, op3 ;
-                            
+                            tandaToInt(op1); tandaToInt(op2); tandaToInt(op3);
                             // ((ab)c)d
                             if (kalkulasi1( kartu, i,  j, k)== 24){
                                 totalSolusi ++ ;
